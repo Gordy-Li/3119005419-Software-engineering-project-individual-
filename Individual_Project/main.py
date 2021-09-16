@@ -29,9 +29,18 @@ def cos_dist(vector1, vector2):
 def main():
     # 'C:/Users/allmi/Desktop/软件工程作业/软件工程个人作业/测试文本2/orig.txt'
     # 'C:/Users/allmi/Desktop/软件工程作业/软件工程个人作业/测试文本2/orig_0.8_add.txt'
-    text1 = Text(input('请输入第一个文本的绝对路径C:/Users/allmi/Desktop/软件工程作业/软件工程个人作业/测试文本2/orig.txt:\n'))
-    text2 = Text(input('请输入第二个文本的绝对路径C:/Users/allmi/Desktop/软件工程作业/软件工程个人作业/测试文本2/orig_0.8_add.txt:\n'))
-    vec1, vec2 = get_word_vector(text1.get_word_list(), text2.get_word_list())
+    try:
+        text1 = Text(input('请输入第一个文本的绝对路径C:/Users/allmi/Desktop/软件工程作业/软件工程个人作业/测试文本2/orig.txt:\n'))
+        text2 = Text(input('请输入第二个文本的绝对路径C:/Users/allmi/Desktop/软件工程作业/软件工程个人作业/测试文本2/orig_0.8_add.txt:\n'))
+        a = text1.get_word_list()
+        b = text2.get_word_list()
+    except FileNotFoundError:
+        print('未找到文件路径！')
+        return -1
+    if text1.get_size() == 0 or text2.get_size() == 0:
+        print('文件为空！')
+        return -2
+    vec1, vec2 = get_word_vector(a, b)
     distance = cos_dist(vec1, vec2)
     print(f'文件重复率为{distance:.2f}')
     print('答案文件的路径为：C:/Users/allmi/Desktop/result.txt')

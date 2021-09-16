@@ -1,10 +1,14 @@
 import re
+import os
 import jieba
 
 
 class Text(object):
     def __init__(self, text_route):
         self.text_route = text_route
+
+    def get_size(self):
+        return os.path.getsize(self.text_route)
 
     def get_word_list(self, num=0):
         with open(self.text_route, 'r', encoding='utf-8') as file:
